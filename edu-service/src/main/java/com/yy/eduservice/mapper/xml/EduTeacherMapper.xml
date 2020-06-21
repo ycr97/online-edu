@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.eduservice.mapper.EduTeacherMapper">
+
+    <sql id="baseSql">
+        id,name,intro,career,level,avatar,sort,is_deleted,gmt_create,gmt_modified
+    </sql>
+
+    <select id="xx" parameterType="EduTeacher" resultType="EduTeacher">
+        select
+        <include refid="baseSql"/>
+        from edu_teacher
+        <where>
+
+        </where>
+    </select>
+</mapper>
