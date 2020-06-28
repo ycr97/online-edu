@@ -27,7 +27,12 @@ public interface EduSubjectService extends IService<EduSubject> {
 
     List<SubjectNestedVO> nestedList();
 
+    boolean removeOneLevel(String parent_id);
+
     boolean saveOneLevel(EduSubject subject);
+
+    boolean saveTwoLevel(EduSubject subject);
+
 
 
 }

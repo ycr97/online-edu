@@ -18,7 +18,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +46,6 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
             workbook = new HSSFWorkbook(file.getInputStream());
 
             // 根据workbook获取sheet对象
-            assert workbook != null;
             Sheet sheet = workbook.getSheetAt(0);
             // 根据sheet获取row对象
             int lastRowNum = sheet.getLastRowNum();
@@ -55,7 +53,7 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
                 list.add("表内数据不能为空");
                 return list;
             }
-            String parentId = null;
+            String parentId;
             for (int i = 1; i <= lastRowNum; i++) {
 
                 Row row = sheet.getRow(i);
@@ -154,8 +152,48 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
     }
 
     @Override
+    public boolean removeOneLevel(String parent_id) {
+        QueryWrapper<EduSubject> qw = new QueryWrapper<>();
+        qw.eq("parent_id", parent_id);
+
+        Integer count = baseMapper.selectCount(qw);
+
+        if (count > 0){
+            return false;
+        }else  {
+            int result = baseMapper.deleteById(parent_id);
+            return result > 0;
+        }
+
+    }
+
+    @Override
     public boolean saveOneLevel(EduSubject subject) {
-        return false;
+        EduSubject eduSubject = this.subjectIsExist(subject.getTitle(), "0");
+        boolean success = false;
+        if (eduSubject == null) {
+            subject.setParentId("0");
+            subject.setSort(0);
+            int i = baseMapper.insert(subject);
+            if (i > 0){
+                success = true;
+            }
+        }else {
+            throw new CustomException(CustomExceptionType.SYSTEM_ERROR, "类别已存在");
+        }
+        return success;
+    }
+
+    @Override
+    public boolean saveTwoLevel(EduSubject subject) {
+        EduSubject eduSubject = this.subjectIsExist(subject.getTitle(), subject.getParentId());
+        if (eduSubject == null) {
+            subject.setSort(0);
+            return this.save(subject);
+        }else {
+            throw new CustomException(CustomExceptionType.SYSTEM_ERROR, "类别已存在");
+        }
+
     }
 
     /**

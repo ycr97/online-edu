@@ -23,5 +23,12 @@ public class ConfigurationPropertiesTest {
         System.out.println(ConstantPropertiesUtil.ACCESS_KEY_ID);
     }
 
+    @Test
+    public void test1() {
+        String a = "凄凄惨惨戚戚";
+        System.out.println(a.toLowerCase());
+    }
+
+
 
 }
