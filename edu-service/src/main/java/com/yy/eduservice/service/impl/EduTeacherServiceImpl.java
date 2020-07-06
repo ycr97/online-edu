@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yy.eduservice.entity.EduTeacher;
-import com.yy.eduservice.entity.EduTeacherQO;
+import com.yy.eduservice.entity.qo.EduTeacherQO;
 import com.yy.eduservice.mapper.EduTeacherMapper;
 import com.yy.eduservice.service.EduTeacherService;
 import org.apache.commons.lang3.StringUtils;

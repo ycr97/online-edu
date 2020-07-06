@@ -87,4 +87,12 @@ public class ResultCommon {
         result.setIsOk(true);
         return result;
     }
+
+    public static ResultCommon fail() {
+        ResultCommon result = new ResultCommon();
+        result.setIsOk(false);
+        result.setCode(20001);
+        result.setMessage("fail");
+        return result;
+    }
 }

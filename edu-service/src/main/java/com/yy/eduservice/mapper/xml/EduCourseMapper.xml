@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.eduservice.mapper.EduCourseMapper">
+
+    <sql id="baseParam">
+        teacher_id,subject_id,title,price,lesson_num,cover
+    </sql>
+
+    <!--<insert id="insertCourse" parameterType="com.yy.eduservice.entity.EduCourse">
+        INSERT
+        INTO
+        edu_course (teacher_id,subject_id,title,price,lesson_num,cover)
+        VALUES(#{teacherId}, )
+
+
+    </insert>-->
+
+</mapper>

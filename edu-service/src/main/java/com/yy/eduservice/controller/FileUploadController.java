@@ -27,8 +27,9 @@ public class FileUploadController {
     @PostMapping("upload")
     public ResultCommon uploadImage(
             @ApiParam(name = "file", value = "文件", required = true)
-            @RequestParam("file")MultipartFile file){
-        String uploadFile = fileUploadService.UploadFile(file);
+            @RequestParam("file")MultipartFile file,
+            @RequestParam(value = "host", required = false) String host){
+        String uploadFile = fileUploadService.UploadFile(file, host);
         Map<String, String> map = new HashMap<>();
         map.put("url", uploadFile);
         return ResultCommon.success(map);

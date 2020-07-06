@@ -4,7 +4,7 @@ package com.yy.eduservice.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yy.educommons.ResultCommon;
 import com.yy.eduservice.entity.EduTeacher;
-import com.yy.eduservice.entity.EduTeacherQO;
+import com.yy.eduservice.entity.qo.EduTeacherQO;
 import com.yy.eduservice.service.EduTeacherService;
 import com.yy.exception.CustomExceptionType;
 import io.swagger.annotations.ApiOperation;
@@ -12,7 +12,6 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.xml.transform.Result;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -105,15 +104,20 @@ public class EduTeacherController {
      * 条件查询
      * @param page 起始页
      * @param limit 每页显示多少数据
-     * @param qo 查询条件对象
+     * @param eduTeacherQO 查询条件对象
      * @return resultCommons
      */
     @PostMapping("/conditionList/{page}/{limit}")
-    public ResultCommon getPageListForCondition(@PathVariable Integer page, @PathVariable Integer limit,
-                                                EduTeacherQO qo){
-        Page<EduTeacher> eduTeacherPage = new Page<>(page, limit);
+    public ResultCommon getPageListForCondition(
+            @ApiParam(name = "page", value = "起始页", required = true)
+            @PathVariable Integer page,
+            @ApiParam(name = "limit", value = "一页显示多少条数", required = true)
+            @PathVariable Integer limit,
+            @ApiParam(name = "courseQO", value = "条件")
+            @RequestBody EduTeacherQO eduTeacherQO){
 
-        eduTeacherService.conditionList(eduTeacherPage, qo);
+        Page<EduTeacher> eduTeacherPage = new Page<>(page, limit);
+        eduTeacherService.conditionList(eduTeacherPage, eduTeacherQO);
 
         List<EduTeacher> records = eduTeacherPage.getRecords();
         long total = eduTeacherPage.getTotal();

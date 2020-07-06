@@ -26,7 +26,7 @@ public class FileUploadServiceImpl implements FileUploadService {
 
 
     @Override
-    public String UploadFile(MultipartFile file) {
+    public String UploadFile(MultipartFile file, String host) {
 
         String endpoint = ConstantPropertiesUtil.END_POINT;
         String accessKeyId = ConstantPropertiesUtil.ACCESS_KEY_ID;
@@ -43,6 +43,10 @@ public class FileUploadServiceImpl implements FileUploadService {
         String filePath = new DateTime().toString("yyyy/MM/dd");
 
         filename = filePath + filename;
+
+        if (host != null){
+            filename = host + "/" + filename;
+        }
 
         try {
             InputStream inputStream = file.getInputStream();

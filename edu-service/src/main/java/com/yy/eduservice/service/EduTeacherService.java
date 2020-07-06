@@ -3,9 +3,7 @@ package com.yy.eduservice.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yy.eduservice.entity.EduTeacher;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yy.eduservice.entity.EduTeacherQO;
-
-import java.util.List;
+import com.yy.eduservice.entity.qo.EduTeacherQO;
 
 /**
  * <p>
