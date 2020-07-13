@@ -11,6 +11,10 @@
     <modules>
         <module>edu-service</module>
         <module>edu-commons</module>
+        <module>edu-video-service</module>
+        <module>edu-eureka-server</module>
+        <module>edu-ucenter</module>
+        <module>edu-statistics</module>
     </modules>
 
     <!--统一jar包管理-->
@@ -47,6 +51,16 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!--spring cloud Hoxton.SR1-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!--mysql-->
             <dependency>
                 <groupId>mysql</groupId>
@@ -146,6 +160,19 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
     </build>
 
 </project>

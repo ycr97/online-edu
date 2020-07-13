@@ -15,9 +15,11 @@ import java.util.List;
  */
 public interface EduVideoService extends IService<EduVideo> {
 
-    boolean deleteByCourseId(String id);
+    boolean deleteByCourseId(String courseId);
 
     List<EduVideo> getVideoByCourseId(String courseId);
 
     boolean getCountByChapterId(String chapterId);
+
+    boolean deleteBarById(String barId);
 }

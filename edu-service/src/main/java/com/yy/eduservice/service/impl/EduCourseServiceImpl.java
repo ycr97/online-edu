@@ -2,9 +2,12 @@ package com.yy.eduservice.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.yy.eduservice.client.VodClient;
 import com.yy.eduservice.entity.EduChapter;
 import com.yy.eduservice.entity.EduCourse;
 import com.yy.eduservice.entity.EduCourseDescription;
+import com.yy.eduservice.entity.EduVideo;
+import com.yy.eduservice.entity.dto.CourseInfo;
 import com.yy.eduservice.entity.dto.CourseInfoForm;
 import com.yy.eduservice.entity.qo.CourseQO;
 import com.yy.eduservice.mapper.EduCourseMapper;
@@ -21,6 +24,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -42,6 +47,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
     @Resource
     private EduVideoService eduVideoService;
+
 
     @Override
     public String saveCourseInfo(CourseInfoForm courseInfoForm) {
@@ -132,20 +138,36 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     }
 
     @Override
-    @Transactional
+//    @Transactional
     public boolean deleteCourseById(String id) {
-        //根据courseId删除小节数据
+
+
+        // 根据courseId删除小节数据
         boolean video = eduVideoService.deleteByCourseId(id);
 
-        //根据courseId删除章节数据
+        // 根据courseId删除章节数据
         boolean chapter = eduChapterService.removeByCourseId(id);
 
-        //根据courseId删除课程描述
+        // 根据courseId删除课程描述
         boolean b = descriptionService.removeByCourseId(id);
 
-        //删除Course表中数据
+        // 删除Course表中数据
         int i = baseMapper.deleteById(id);
 
+        return i > 0;
+    }
+
+    @Override
+    public CourseInfo getBasicInfo(String id) {
+        return baseMapper.getCourseAllInfo(id);
+    }
+
+    @Override
+    public boolean updateCourseStatus(String id) {
+        EduCourse eduCourse = new EduCourse();
+        eduCourse.setId(id);
+        eduCourse.setStatus(EduCourse.COURSE_NORMAL);
+        int i = baseMapper.updateStatus(eduCourse);
         return i > 0;
     }
 

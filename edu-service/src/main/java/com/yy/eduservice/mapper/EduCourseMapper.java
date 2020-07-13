@@ -2,6 +2,7 @@ package com.yy.eduservice.mapper;
 
 import com.yy.eduservice.entity.EduCourse;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.yy.eduservice.entity.dto.CourseInfo;
 
 /**
  * <p>
@@ -12,5 +13,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2020-06-24
  */
 public interface EduCourseMapper extends BaseMapper<EduCourse> {
-    int insertCourse(EduCourse eduCourse);
+
+    CourseInfo getCourseAllInfo(String id);
+
+    int updateStatus(EduCourse eduCourse);
 }

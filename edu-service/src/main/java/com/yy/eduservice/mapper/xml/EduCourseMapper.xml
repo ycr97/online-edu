@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yy.eduservice.mapper.EduCourseMapper">
+    
+    <resultMap id="courseInfo" type="com.yy.eduservice.entity.dto.CourseInfo">
+        <id column="id" property="id"/>
+        <result property="title" column="title"/>
+        <result property="price" column="price"/>
+        <result property="cover" column="cover"/>
+        <result property="description" column="description"/>
+        <result property="lessonNum" column="lesson_num"/>
+        <result property="levelOne" column="levelOne"/>
+        <result property="levelTwo" column="levelTwo"/>
+        <result property="teacherName" column="name"/>
+    </resultMap>
 
-    <sql id="baseParam">
-        teacher_id,subject_id,title,price,lesson_num,cover
-    </sql>
+    <!--com.yy.eduservice.entity.dto.CourseInfo-->
+    <select id="getCourseAllInfo" parameterType="string" resultMap="courseInfo">
+        SELECT c.id,c.title,price,c.cover,c.lesson_num,t.`name`,s1.title AS levelTwo,s2.title AS levelOne,ed.description
+        FROM edu_course c LEFT OUTER JOIN edu_course_description ed ON c.id=ed.id
+                          LEFT OUTER JOIN edu_subject s1 ON c.subject_id=s1.id
+                          LEFT OUTER JOIN edu_subject s2 ON c.subject_parent_id=s2.id
+                          LEFT OUTER JOIN edu_teacher t ON c.teacher_id=t.id
+        WHERE c.id=#{id}
+    </select>
 
-    <!--<insert id="insertCourse" parameterType="com.yy.eduservice.entity.EduCourse">
-        INSERT
-        INTO
-        edu_course (teacher_id,subject_id,title,price,lesson_num,cover)
-        VALUES(#{teacherId}, )
-
-
-    </insert>-->
+    <update id="updateStatus" parameterType="com.yy.eduservice.entity.EduCourse">
+        UPDATE edu_course SET status=#{status}
+        WHERE id=#{id}
+    </update>
 
 </mapper>

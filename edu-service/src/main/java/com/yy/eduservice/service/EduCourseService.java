@@ -3,6 +3,7 @@ package com.yy.eduservice.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yy.eduservice.entity.EduCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yy.eduservice.entity.dto.CourseInfo;
 import com.yy.eduservice.entity.dto.CourseInfoForm;
 import com.yy.eduservice.entity.qo.CourseQO;
 
@@ -25,5 +26,9 @@ public interface EduCourseService extends IService<EduCourse> {
     void conditionList(Page<EduCourse> page, CourseQO qo);
 
     boolean deleteCourseById(String id);
+
+    CourseInfo getBasicInfo(String id);
+
+    boolean updateCourseStatus(String id);
 
 }

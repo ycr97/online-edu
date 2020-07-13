@@ -4,6 +4,7 @@ package com.yy.eduservice.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yy.educommons.ResultCommon;
 import com.yy.eduservice.entity.EduCourse;
+import com.yy.eduservice.entity.dto.CourseInfo;
 import com.yy.eduservice.entity.dto.CourseInfoForm;
 import com.yy.eduservice.entity.qo.CourseQO;
 import com.yy.eduservice.service.EduCourseService;
@@ -136,6 +137,32 @@ public class EduCourseController {
             @PathVariable String id) {
 
         boolean b = eduCourseService.deleteCourseById(id);
+        if (b) {
+            return ResultCommon.success();
+        }else {
+            return ResultCommon.fail();
+        }
+    }
+
+    @ApiOperation("发布课程前核查信息")
+    @GetMapping("/getBasicInfo/{id}")
+    public ResultCommon getCourseAllInfo(
+            @ApiParam(name = "id", value = "课程Id", required = true)
+            @PathVariable String  id) {
+        CourseInfo basicInfo = eduCourseService.getBasicInfo(id);
+        if (basicInfo != null) {
+            return ResultCommon.success(basicInfo);
+        }else {
+            return ResultCommon.fail();
+        }
+    }
+
+    @ApiOperation("课程最终发布")
+    @PutMapping("/publish/{id}")
+    public ResultCommon updateCourseStatus(
+            @ApiParam(name = "id", value = "课程Id", required = true)
+             @PathVariable String  id) {
+        boolean b = eduCourseService.updateCourseStatus(id);
         if (b) {
             return ResultCommon.success();
         }else {

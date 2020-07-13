@@ -46,7 +46,7 @@ public class EduVideoController {
             @ApiParam(name = "id", value =  "小节Id", required = true)
             @PathVariable String id) {
 
-        boolean b = eduVideoService.removeById(id);
+        boolean b = eduVideoService.deleteBarById(id);
         if (b) {
             return ResultCommon.success();
         }else {

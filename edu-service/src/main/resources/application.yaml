@@ -17,17 +17,43 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
 
-
-
-#mybatis日志
+#mybatis日志F:\IDEA\online-edu\edu-service\src\main\java\com\yy\eduservice\mapper\xml
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   type-aliases-package: com.yy.eduservice.entity
-
+  mapper-locations: classpath:com/yy/eduservice/mapper/xml/*.xml
 aliyun:
   oss:
     endPoint: "oss-cn-chengdu.aliyuncs.com"
     accessKeyId: "LTAI4GEJpPSkfiakyer4UPKC"
     accessKeySecret: "wr15SmIKfC3NAilCKI1LwQaRdOialf"
     bucketName: "yy-edu"
+
+#SpringCloud微服务配置
+#Eureka 配置
+eureka:
+  client:
+    register-with-eureka: true
+    fetchRegistry: true
+    service-url:
+      #defaultZone: http://localhost:7001/eureka
+      #集群版
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    prefer-ip-address: true
+#Feign 配置
+feign:
+  hystrix:
+    enabled: true #feign 开启hystrix支持
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 15000
+ribbon:
+  ConnectTimeout: 2000
+  ReadTimeout: 5000

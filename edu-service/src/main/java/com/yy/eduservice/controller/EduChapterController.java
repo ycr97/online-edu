@@ -5,13 +5,9 @@ import com.yy.educommons.ResultCommon;
 import com.yy.eduservice.entity.EduChapter;
 import com.yy.eduservice.entity.dto.EduChapterDto;
 import com.yy.eduservice.service.EduChapterService;
-import com.yy.eduservice.service.EduCourseService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
