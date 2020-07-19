@@ -2,10 +2,11 @@ package com.yy.eduucenter.controller;
 
 
 import com.yy.educommons.ResultCommon;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.yy.eduucenter.service.UcenterMemberService;
+import io.swagger.annotations.ApiParam;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -17,13 +18,20 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/eduucenter/member")
+@CrossOrigin
 public class UcenterMemberController {
 
-    @GetMapping("/{day}")
-    public ResultCommon getRegisterNum() {
+    @Resource
+    UcenterMemberService ucenterMemberService;
 
+    @GetMapping("/getDayReg/{day}")
+    public ResultCommon getRegisterNum(
+            @ApiParam(name = "day", value = "某一天", required = true)
+            @PathVariable("day") String day) {
 
-        return null;
+        Integer result = ucenterMemberService.getDayRegNum(day);
+
+        return ResultCommon.builder().data(result).code(20000).isOk(true).build();
     }
 
 }

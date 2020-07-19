@@ -83,6 +83,7 @@ public class VidServiceImpl implements VidService {
     @Override
     public void deleteVideos(List videos) {
         String videoIds = StringUtils.join(videos.toArray(), ",");
+        System.out.println(videoIds);
         deleteVideo(videoIds);
     }
 

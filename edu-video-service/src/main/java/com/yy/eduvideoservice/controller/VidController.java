@@ -53,4 +53,10 @@ public class VidController {
         vidService.deleteVideos(videos);
         return ResultCommon.success();
     }
+
+    @GetMapping("/testRestTemplate/{param}")
+    public ResultCommon testRestTemplate(@PathVariable("param") String param) {
+        System.out.println(param);
+        return ResultCommon.success(param);
+    }
 }

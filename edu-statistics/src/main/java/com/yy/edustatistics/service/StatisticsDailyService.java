@@ -2,6 +2,10 @@ package com.yy.edustatistics.service;
 
 import com.yy.edustatistics.entity.StatisticsDaily;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yy.edustatistics.entity.dto.ChartConditionDto;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -13,4 +17,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface StatisticsDailyService extends IService<StatisticsDaily> {
 
+    void createStatisticsByDate(String day);
+
+    Map<String, Object> showChart(ChartConditionDto searchObj);
 }

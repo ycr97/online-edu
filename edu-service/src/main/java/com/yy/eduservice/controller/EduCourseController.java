@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -168,6 +169,16 @@ public class EduCourseController {
         }else {
             return ResultCommon.fail();
         }
+    }
+
+    @Resource
+    RestTemplate restTemplate;
+
+    @GetMapping("/testTemplate/{param}")
+    public ResultCommon testRestTemplate(@PathVariable("param") String param) {
+        ResultCommon forObject = restTemplate.getForObject("http://edu-vod/vidservice/vod/testRestTemplate/" + param,
+                ResultCommon.class);
+        return forObject;
     }
 
 }

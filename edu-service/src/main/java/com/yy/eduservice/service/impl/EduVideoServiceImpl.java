@@ -11,10 +11,12 @@ import com.yy.exception.CustomException;
 import com.yy.exception.CustomExceptionType;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -30,6 +32,9 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
 
     @Resource
     VodClient vodClient;
+
+    @Resource
+    RestTemplate restTemplate;
 
     @Override
     public boolean deleteByCourseId(String courseId) {
@@ -48,9 +53,16 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
                 videoIds.add(videoSourceId);
             }
         }
+        List<String> collect = videoIds.stream()
+                .distinct()
+                .collect(Collectors.toList());
         // 调用视频微服务删除云端视频
         if (videoIds.size() > 0) {
-            ResultCommon resultCommon = vodClient.deleteVideos(videoIds);
+            // open feign 调用
+            ResultCommon resultCommon = vodClient.deleteVideos(collect);
+
+            // RestTemplate方式调用
+            restTemplate.delete("http://EDU-VOD/vidservice/vod/deleteMore", collect, ResultCommon.class);
         }
 
         // 删除video表中course_id为需要删除课程Id的记录

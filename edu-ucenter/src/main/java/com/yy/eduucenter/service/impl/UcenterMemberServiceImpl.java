@@ -17,4 +17,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, UcenterMember> implements UcenterMemberService {
 
+    @Override
+    public Integer getDayRegNum(String day) {
+        return baseMapper.getDayRegNum(day);
+    }
 }
