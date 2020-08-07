@@ -1,7 +1,9 @@
 package com.yy.educms.service;
 
-import com.yy.educms.entity.CrmBanner;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yy.educms.entity.CrmBanner;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +15,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface CrmBannerService extends IService<CrmBanner> {
 
+
+    List<CrmBanner> selectIndexBanner();
+
+    boolean updateBanner(CrmBanner crmBanner);
 }

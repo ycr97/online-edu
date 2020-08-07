@@ -14,4 +14,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface UcenterMemberService extends IService<UcenterMember> {
 
     Integer getDayRegNum(String day);
+
+    String login(UcenterMember ucenterMember);
 }

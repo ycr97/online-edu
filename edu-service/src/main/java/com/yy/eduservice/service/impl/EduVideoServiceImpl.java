@@ -62,7 +62,7 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
             ResultCommon resultCommon = vodClient.deleteVideos(collect);
 
             // RestTemplate方式调用
-            restTemplate.delete("http://EDU-VOD/vidservice/vod/deleteMore", collect, ResultCommon.class);
+//            restTemplate.delete("http://EDU-VOD/vidservice/vod/deleteMore", collect, ResultCommon.class);
         }
 
         // 删除video表中course_id为需要删除课程Id的记录

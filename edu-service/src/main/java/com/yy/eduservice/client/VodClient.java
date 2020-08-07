@@ -14,7 +14,7 @@ import java.util.List;
  * @date 2020/7/12
  */
 @Component
-@FeignClient(value = "edu-vod")
+@FeignClient(value = "EDU-VOD")
 public interface VodClient {
 
     @DeleteMapping("/vidservice/vod/{videoId}")
