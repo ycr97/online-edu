@@ -3,10 +3,14 @@
 <mapper namespace="com.yy.eduservice.mapper.EduVideoMapper">
 
     <select id="getVideoIdByBarId" parameterType="string" resultType="string">
-        select video_source_id from edu_video where id=#{barId}
+        select video_source_id
+        from edu_video
+        where id = #{barId}
     </select>
 
     <select id="getVideoIdByCourseId" parameterType="string" resultType="java.lang.String">
-        select video_source_id from edu_video where course_id=#{courseId}
+        select video_source_id
+        from edu_video
+        where course_id = #{courseId}
     </select>
 </mapper>

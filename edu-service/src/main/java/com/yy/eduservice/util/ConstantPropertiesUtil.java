@@ -16,7 +16,7 @@ public class ConstantPropertiesUtil implements InitializingBean {
 
     private String endPoint;
 
-    private String  accessKeyId;
+    private String accessKeyId;
 
     private String accessKeySecret;
 
@@ -30,7 +30,7 @@ public class ConstantPropertiesUtil implements InitializingBean {
 
     public static String BUCKET_NAME;
 
-    public static String FILE_HOST ;
+    public static String FILE_HOST;
 
     @Override
     public void afterPropertiesSet() throws Exception {

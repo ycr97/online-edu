@@ -4,7 +4,7 @@ package com.yy.exception;
  * @author ycr
  * @date 2020/6/3
  */
-public class CustomException extends RuntimeException{
+public class CustomException extends RuntimeException {
 
     /*错误异常编码*/
     private int code;
@@ -12,7 +12,8 @@ public class CustomException extends RuntimeException{
     /*异常信息*/
     private String message;
 
-    protected CustomException(){}
+    protected CustomException() {
+    }
 
     public CustomException(CustomExceptionType type, String message) {
         this.code = type.getCode();

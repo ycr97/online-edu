@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApiModel<D extends Serializable, E extends Serializable> implements Serializable{
+public class ApiModel<D extends Serializable, E extends Serializable> implements Serializable {
 
     private static final long serialVersionUID = 3909206440170684275L;
 

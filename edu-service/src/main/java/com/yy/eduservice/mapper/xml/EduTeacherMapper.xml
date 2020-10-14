@@ -3,7 +3,7 @@
 <mapper namespace="com.yy.eduservice.mapper.EduTeacherMapper">
 
     <sql id="baseSql">
-        id,name,intro,career,level,avatar,sort,is_deleted,gmt_create,gmt_modified
+        id, name, intro, career, level, avatar, sort, is_deleted, gmt_create, gmt_modified
     </sql>
 
     <select id="xx" parameterType="EduTeacher" resultType="EduTeacher">

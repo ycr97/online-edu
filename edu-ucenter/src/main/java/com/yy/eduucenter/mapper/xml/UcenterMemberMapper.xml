@@ -3,6 +3,8 @@
 <mapper namespace="com.yy.eduucenter.mapper.UcenterMemberMapper">
 
     <select id="getDayRegNum" resultType="int" parameterType="string">
-        select count(*) from ucenter_member where date(gmt_create)=#{day}
+        select count(*)
+        from ucenter_member
+        where date(gmt_create) = #{day}
     </select>
 </mapper>

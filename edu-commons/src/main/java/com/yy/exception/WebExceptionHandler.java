@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * ControllerAdvice注解的作用就是监听所有的Controller，
  * 一旦Controller抛出CustomException，就会在@ExceptionHandler(CustomException.class)对该异常进行处理。
+ *
  * @author ycr
  * @date 2020/5/8
  */
@@ -17,8 +18,8 @@ public class WebExceptionHandler {
 
     @ExceptionHandler(CustomException.class)
     @ResponseBody
-    public ResultCommon customException(CustomException e){
-        if(e.getCode() == CustomExceptionType.SYSTEM_ERROR.getCode()){
+    public ResultCommon customException(CustomException e) {
+        if (e.getCode() == CustomExceptionType.SYSTEM_ERROR.getCode()) {
             //400异常不需要持久化，将异常信息以友好的方式告知用户就可以
             //TODO 将500异常信息持久化处理，方便运维人员处理
         }
@@ -27,11 +28,11 @@ public class WebExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public ResultCommon exception(Exception e){
+    public ResultCommon exception(Exception e) {
         //TODO 将异常信息持久化处理，方便运维人员处理
 
         //没有被程序员发现，并转换为CustomException的异常，都是其他异常或者未知异常.
-        return ResultCommon.error(new CustomException(CustomExceptionType.OTHER_ERROR,"未知异常"));
+        return ResultCommon.error(new CustomException(CustomExceptionType.OTHER_ERROR, "未知异常"));
     }
 
 }
