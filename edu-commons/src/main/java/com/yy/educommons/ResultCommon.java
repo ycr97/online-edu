@@ -1,5 +1,7 @@
 package com.yy.educommons;
 
+import com.yy.educommons.model.ApiModel;
+import com.yy.educommons.model.NullError;
 import com.yy.exception.CustomException;
 import com.yy.exception.CustomExceptionType;
 import lombok.AllArgsConstructor;

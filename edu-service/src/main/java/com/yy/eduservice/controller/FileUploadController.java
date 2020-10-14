@@ -15,7 +15,7 @@ import java.util.Map;
  * @author ycr
  * @date 2020/6/15
  */
-@Api(description="阿里云文件管理")
+@Api(description = "阿里云文件管理")
 @RestController
 @RequestMapping("/eduservice/upload")
 @CrossOrigin
@@ -27,8 +27,8 @@ public class FileUploadController {
     @PostMapping("upload")
     public ResultCommon uploadImage(
             @ApiParam(name = "file", value = "文件", required = true)
-            @RequestParam("file")MultipartFile file,
-            @RequestParam(value = "host", required = false) String host){
+            @RequestParam("file") MultipartFile file,
+            @RequestParam(value = "host", required = false) String host) {
         String uploadFile = fileUploadService.UploadFile(file, host);
         Map<String, String> map = new HashMap<>();
         map.put("url", uploadFile);

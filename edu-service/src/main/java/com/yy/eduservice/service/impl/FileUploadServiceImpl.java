@@ -44,7 +44,7 @@ public class FileUploadServiceImpl implements FileUploadService {
 
         filename = filePath + filename;
 
-        if (host != null){
+        if (host != null) {
             filename = host + "/" + filename;
         }
 
@@ -59,7 +59,7 @@ public class FileUploadServiceImpl implements FileUploadService {
 
             // 关闭OSSClient。
             ossClient.shutdown();
-            uploadUrl =  uploadUrl + bucketName + "." + endpoint + "/" + filename;
+            uploadUrl = uploadUrl + bucketName + "." + endpoint + "/" + filename;
         } catch (IOException e) {
             log.info(e.getMessage());
             throw new CustomException(CustomExceptionType.SYSTEM_ERROR, e.getMessage());

@@ -42,14 +42,14 @@ public class VidController {
     public ResultCommon deleteVideo(
             @PathVariable("videoId")
             @ApiParam(name = "videoId", value = "视频Id", required = true)
-            String videoId){
+                    String videoId) {
         vidService.deleteVideo(videoId);
         return ResultCommon.success();
     }
 
     @DeleteMapping("/deleteMore")
     @ApiOperation("批量删除")
-    public ResultCommon deleteVideos(@RequestParam("videoList")List<String> videos){
+    public ResultCommon deleteVideos(@RequestParam("videoList") List<String> videos) {
         vidService.deleteVideos(videos);
         return ResultCommon.success();
     }

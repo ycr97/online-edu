@@ -25,7 +25,7 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
     @Override
     public void conditionList(Page<EduTeacher> page, EduTeacherQO qo) {
 
-        if (qo == null){
+        if (qo == null) {
             baseMapper.selectPage(page, null);
             return;
         }
@@ -35,16 +35,16 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
         String begin = qo.getBegin();
 
         QueryWrapper<EduTeacher> wrapper = new QueryWrapper<>();
-        if (!StringUtils.isEmpty(name)){
+        if (!StringUtils.isEmpty(name)) {
             wrapper.like("name", name);
         }
-        if (!StringUtils.isEmpty(level)){
+        if (!StringUtils.isEmpty(level)) {
             wrapper.eq("level", level);
         }
-        if (!StringUtils.isEmpty(begin)){
+        if (!StringUtils.isEmpty(begin)) {
             wrapper.ge("gmt_create", begin);
         }
-        if (!StringUtils.isEmpty(end)){
+        if (!StringUtils.isEmpty(end)) {
             wrapper.le("gmt_create", end);
         }
 

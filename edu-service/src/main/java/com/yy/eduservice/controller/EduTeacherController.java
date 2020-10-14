@@ -82,9 +82,9 @@ public class EduTeacherController {
 
     /**
      * 分页查询所有
-     * @param page
-     * @param limit
-     * @return
+     * @param page page
+     * @param limit limit
+     * @return ResultCommon
      */
     @GetMapping("/{page}/{limit}")
     public ResultCommon getPageList(@PathVariable Integer page, @PathVariable Integer limit){

@@ -25,7 +25,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/educms/bannerAdmin")
 @CrossOrigin
-public class  BannerAdminController {
+public class BannerAdminController {
 
     @Resource
     private CrmBannerService crmBannerService;
@@ -35,8 +35,7 @@ public class  BannerAdminController {
     public ResultCommon pageBanner(@ApiParam(name = "page", value = "第几页", required = true)
                                    @PathVariable long page,
                                    @ApiParam(name = "limit", value = "一页显示多少数据", required = true)
-                                   @PathVariable
-                                   long limit) {
+                                   @PathVariable long limit) {
         Page<CrmBanner> pageBanner = new Page<>(page, limit);
 
         crmBannerService.page(pageBanner, null);
@@ -46,14 +45,14 @@ public class  BannerAdminController {
         map.put("items", records);
         map.put("total", total);
         return ResultCommon.success(map);
-        
+
     }
 
     @PostMapping
     @ApiOperation("添加banner")
     public ResultCommon addBanner(@ApiParam(name = "crmBanner", value = "banner对象", required = true)
                                   @RequestBody
-                                  CrmBanner crmBanner){
+                                          CrmBanner crmBanner) {
         crmBannerService.save(crmBanner);
 
         return null;

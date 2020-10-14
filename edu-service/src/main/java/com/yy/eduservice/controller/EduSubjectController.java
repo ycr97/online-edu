@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +26,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/eduservice/subject")
-@Api(description="课程分类管理")
+@Api(description = "课程分类管理")
 @CrossOrigin //跨域
 public class EduSubjectController {
 
@@ -35,14 +36,14 @@ public class EduSubjectController {
     @ApiOperation(value = "Excel批量导入")
     @PostMapping("/import")
     public ResultCommon upload(
-            @ApiParam(name = "file", value = "Excel文件",required = true)
-                    @RequestParam(value = "file", required = true)
-                    MultipartFile file){
+            @ApiParam(name = "file", value = "Excel文件", required = true)
+            @RequestParam(value = "file", required = true)
+                    MultipartFile file) {
 
         List<String> list = eduSubjectService.importSubject(file);
         if (list.size() == 0) {
             return ResultCommon.success();
-        }else {
+        } else {
             Map<String, List<String>> map = new HashMap<>();
             map.put("msgList", list);
             return ResultCommon.success(map);
@@ -52,7 +53,7 @@ public class EduSubjectController {
 
     @ApiOperation(value = "分类列表")
     @GetMapping("/list")
-    public ResultCommon nestedList(){
+    public ResultCommon nestedList() {
         List<SubjectNestedVO> subjectNestedVOS = eduSubjectService.nestedList();
 
         Map<String, List<SubjectNestedVO>> map = new HashMap<>();
@@ -65,11 +66,11 @@ public class EduSubjectController {
     @DeleteMapping("/removeOneLevel/{id}")
     public ResultCommon removeOneLevel(
             @ApiParam(name = "id", value = "分类id", required = true)
-            @PathVariable("id") String id){
+            @PathVariable("id") String id) {
         boolean b = eduSubjectService.removeOneLevel(id);
         if (b) {
             return ResultCommon.success();
-        }else {
+        } else {
             return ResultCommon.builder().message("删除失败").code(20001).isOk(false).build();
         }
     }
@@ -78,11 +79,11 @@ public class EduSubjectController {
     @DeleteMapping("/{id}")
     public ResultCommon removeSubject(
             @ApiParam(name = "id", value = "分类id", required = true)
-            @PathVariable("id") String id){
+            @PathVariable("id") String id) {
         boolean b = eduSubjectService.removeById(id);
         if (b) {
             return ResultCommon.success();
-        }else {
+        } else {
             return ResultCommon.builder().message("删除失败").code(20001).isOk(false).build();
         }
     }
@@ -92,11 +93,11 @@ public class EduSubjectController {
     @PostMapping("/saveOneLevel")
     public ResultCommon saveOneLevel(
             @ApiParam(name = "subject", value = "一级分类", required = true)
-            @RequestBody EduSubject subject){
+            @RequestBody EduSubject subject) {
         boolean b = eduSubjectService.saveOneLevel(subject);
         if (b) {
             return ResultCommon.builder().message("添加成功").code(20000).isOk(true).build();
-        }else {
+        } else {
             return ResultCommon.builder().isOk(false).code(20001).message("添加失败").build();
         }
     }
@@ -105,11 +106,11 @@ public class EduSubjectController {
     @PostMapping("/saveTwoLevel")
     public ResultCommon saveTwoLevel(
             @ApiParam(name = "subject", value = "二级分类", required = true)
-            @RequestBody EduSubject subject){
+            @RequestBody EduSubject subject) {
         boolean b = eduSubjectService.saveTwoLevel(subject);
         if (b) {
             return ResultCommon.builder().message("添加成功").code(20000).isOk(true).build();
-        }else {
+        } else {
             return ResultCommon.builder().isOk(false).code(20001).message("添加失败").build();
         }
     }

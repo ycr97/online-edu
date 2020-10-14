@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 public class EduServiceConfig {
 
     @Bean
-    PaginationInterceptor paginationInterceptor(){
+    PaginationInterceptor paginationInterceptor() {
         return new PaginationInterceptor();
     }
 

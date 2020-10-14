@@ -10,8 +10,6 @@ import com.yy.eduservice.entity.qo.CourseQO;
 import com.yy.eduservice.service.EduCourseService;
 import com.yy.exception.CustomException;
 import com.yy.exception.CustomExceptionType;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
@@ -40,31 +38,33 @@ public class EduCourseController {
 
     /**
      * 保存课程信息
+     *
      * @param courseInfoForm
      * @return
      */
     @PostMapping("/saveCourse")
     @ApiOperation("新建课程信息")
-    public ResultCommon addCourseInfo(@RequestBody CourseInfoForm courseInfoForm){
+    public ResultCommon addCourseInfo(@RequestBody CourseInfoForm courseInfoForm) {
 
         String courseId = eduCourseService.saveCourseInfo(courseInfoForm);
         if (courseId != null) {
             return ResultCommon.success(courseId);
-        }else {
+        } else {
             return ResultCommon.builder().code(20001).isOk(false).message("发布课程失败").build();
         }
     }
 
     /**
      * 根据Id查询课程信息
+     *
      * @param id
      * @return
      */
     @GetMapping("/{id}")
     @ApiOperation("根据Id得到课程信息")
     public ResultCommon getCourseById(@PathVariable
-                    @ApiParam(value = "id", name = "id", required = true)
-                    String id) {
+                                      @ApiParam(value = "id", name = "id", required = true)
+                                              String id) {
         CourseInfoForm course = eduCourseService.getCourseInfoById(id);
         return ResultCommon.success(course);
 
@@ -81,7 +81,7 @@ public class EduCourseController {
         boolean b = eduCourseService.updateCourseById(id, courseInfoForm);
         if (b) {
             return ResultCommon.success();
-        }else {
+        } else {
             throw new CustomException(CustomExceptionType.SYSTEM_ERROR, "修改失败");
         }
     }
@@ -140,7 +140,7 @@ public class EduCourseController {
         boolean b = eduCourseService.deleteCourseById(id);
         if (b) {
             return ResultCommon.success();
-        }else {
+        } else {
             return ResultCommon.fail();
         }
     }
@@ -149,11 +149,11 @@ public class EduCourseController {
     @GetMapping("/getBasicInfo/{id}")
     public ResultCommon getCourseAllInfo(
             @ApiParam(name = "id", value = "课程Id", required = true)
-            @PathVariable String  id) {
+            @PathVariable String id) {
         CourseInfo basicInfo = eduCourseService.getBasicInfo(id);
         if (basicInfo != null) {
             return ResultCommon.success(basicInfo);
-        }else {
+        } else {
             return ResultCommon.fail();
         }
     }
@@ -162,11 +162,11 @@ public class EduCourseController {
     @PutMapping("/publish/{id}")
     public ResultCommon updateCourseStatus(
             @ApiParam(name = "id", value = "课程Id", required = true)
-             @PathVariable String  id) {
+            @PathVariable String id) {
         boolean b = eduCourseService.updateCourseStatus(id);
         if (b) {
             return ResultCommon.success();
-        }else {
+        } else {
             return ResultCommon.fail();
         }
     }

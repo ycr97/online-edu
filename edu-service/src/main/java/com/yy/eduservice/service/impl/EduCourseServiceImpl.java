@@ -2,11 +2,9 @@ package com.yy.eduservice.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.yy.eduservice.client.VodClient;
-import com.yy.eduservice.entity.EduChapter;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yy.eduservice.entity.EduCourse;
 import com.yy.eduservice.entity.EduCourseDescription;
-import com.yy.eduservice.entity.EduVideo;
 import com.yy.eduservice.entity.dto.CourseInfo;
 import com.yy.eduservice.entity.dto.CourseInfoForm;
 import com.yy.eduservice.entity.qo.CourseQO;
@@ -14,7 +12,6 @@ import com.yy.eduservice.mapper.EduCourseMapper;
 import com.yy.eduservice.service.EduChapterService;
 import com.yy.eduservice.service.EduCourseDescriptionService;
 import com.yy.eduservice.service.EduCourseService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yy.eduservice.service.EduVideoService;
 import com.yy.exception.CustomException;
 import com.yy.exception.CustomExceptionType;
@@ -24,8 +21,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <p>
@@ -71,7 +66,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
         if (b) {
             return eduCourse.getId();
-        }else {
+        } else {
             return null;
         }
     }

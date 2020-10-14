@@ -30,12 +30,12 @@ public class EduVideoController {
     @ApiOperation("添加小节")
     public ResultCommon saveVideo(
             @ApiParam(name = "eduVideo", value = "小节信息", required = true)
-            @RequestBody EduVideo eduVideo){
+            @RequestBody EduVideo eduVideo) {
 
         boolean save = eduVideoService.save(eduVideo);
         if (save) {
             return ResultCommon.success();
-        }else {
+        } else {
             return ResultCommon.fail();
         }
     }
@@ -43,13 +43,13 @@ public class EduVideoController {
     @DeleteMapping("/{id}")
     @ApiOperation("删除小节")
     public ResultCommon deleteById(
-            @ApiParam(name = "id", value =  "小节Id", required = true)
+            @ApiParam(name = "id", value = "小节Id", required = true)
             @PathVariable String id) {
 
         boolean b = eduVideoService.deleteBarById(id);
         if (b) {
             return ResultCommon.success();
-        }else {
+        } else {
             return ResultCommon.fail();
         }
     }
@@ -62,7 +62,7 @@ public class EduVideoController {
         boolean b = eduVideoService.updateById(eduVideo);
         if (b) {
             return ResultCommon.success();
-        }else {
+        } else {
             return ResultCommon.fail();
         }
     }

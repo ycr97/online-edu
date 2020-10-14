@@ -18,6 +18,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
             Sheet sheet = workbook.getSheetAt(0);
             // 根据sheet获取row对象
             int lastRowNum = sheet.getLastRowNum();
-            if (lastRowNum <= 1){
+            if (lastRowNum <= 1) {
                 list.add("表内数据不能为空");
                 return list;
             }
@@ -65,9 +66,9 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
                 Cell cellOne = row.getCell(0);
 
                 // 添加一级分类
-                //  excle表中数据有很多重复的一级分类
+                //  excel表中数据有很多重复的一级分类
                 //在添加一级分类的之前需要判断,判断要添加的一级分类在数据中是否存在
-                if (cellOne != null){
+                if (cellOne != null) {
                     String cellStr1 = cellOne.getStringCellValue();
                     EduSubject eduSubject = subjectIsExist(cellStr1, "0");
                     if (eduSubject == null) {
@@ -77,10 +78,10 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
                         subject.setSort(0);
                         baseMapper.insert(subject);
                         parentId = subject.getId();
-                    }else {
+                    } else {
                         parentId = eduSubject.getId();
                     }
-                }else {
+                } else {
                     // TODO
                     list.add("第" + i + "行一级分类为空");
                     continue;
@@ -97,7 +98,7 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
                         subject1.setTitle(cellStr2);
                         baseMapper.insert(subject1);
                     }
-                }else {
+                } else {
                     // TODO
                     list.add("第" + i + "行二级分类为空");
                 }
@@ -111,6 +112,7 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
 
     /**
      * 嵌套数据列表
+     *
      * @return list
      */
     @Override
@@ -131,13 +133,11 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
         List<SubjectNestedVO> snVo = new ArrayList<>();
 
         int oneNum = subjects.size();
-        for (int i = 0; i < oneNum; i++) {
-            EduSubject subject = subjects.get(i);
+        for (EduSubject subject : subjects) {
             SubjectNestedVO subjectNestedVO = new SubjectNestedVO();
             BeanUtils.copyProperties(subject, subjectNestedVO);
 
-            for (int j = 0; j < subSubjects.size(); j++) {
-                EduSubject s = subSubjects.get(j);
+            for (EduSubject s : subSubjects) {
                 if (s.getParentId().equals(subject.getId())) {
 
                     SubjectVO subjectVO = new SubjectVO();
@@ -158,9 +158,9 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
 
         Integer count = baseMapper.selectCount(qw);
 
-        if (count > 0){
+        if (count > 0) {
             return false;
-        }else  {
+        } else {
             int result = baseMapper.deleteById(parent_id);
             return result > 0;
         }
@@ -175,10 +175,10 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
             subject.setParentId("0");
             subject.setSort(0);
             int i = baseMapper.insert(subject);
-            if (i > 0){
+            if (i > 0) {
                 success = true;
             }
-        }else {
+        } else {
             throw new CustomException(CustomExceptionType.SYSTEM_ERROR, "类别已存在");
         }
         return success;
@@ -190,18 +190,17 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
         if (eduSubject == null) {
             subject.setSort(0);
             return this.save(subject);
-        }else {
+        } else {
             throw new CustomException(CustomExceptionType.SYSTEM_ERROR, "类别已存在");
         }
 
     }
 
     /**
-     *
      * @param title
      * @return
      */
-    private EduSubject subjectIsExist(String title, String parent){
+    private EduSubject subjectIsExist(String title, String parent) {
 
         QueryWrapper<EduSubject> qw = new QueryWrapper<>();
         qw.eq("title", title);

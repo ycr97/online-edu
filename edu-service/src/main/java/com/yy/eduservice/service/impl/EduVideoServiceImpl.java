@@ -1,12 +1,12 @@
 package com.yy.eduservice.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yy.educommons.ResultCommon;
 import com.yy.eduservice.client.VodClient;
 import com.yy.eduservice.entity.EduVideo;
 import com.yy.eduservice.mapper.EduVideoMapper;
 import com.yy.eduservice.service.EduVideoService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yy.exception.CustomException;
 import com.yy.exception.CustomExceptionType;
 import org.apache.commons.lang3.StringUtils;

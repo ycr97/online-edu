@@ -14,11 +14,11 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "aliyun.vod")
 public class VodConstant implements InitializingBean {
 
-    private String  accessKeyId;
+    private String accessKeyId;
 
     private String accessKeySecret;
 
-    public static  String ACCESS_KEY_ID;
+    public static String ACCESS_KEY_ID;
 
     public static String ACCESS_KEY_SECRET;
 

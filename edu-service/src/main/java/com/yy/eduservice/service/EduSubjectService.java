@@ -1,7 +1,7 @@
 package com.yy.eduservice.service;
 
-import com.yy.eduservice.entity.EduSubject;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yy.eduservice.entity.EduSubject;
 import com.yy.eduservice.entity.vo.SubjectNestedVO;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +19,7 @@ public interface EduSubjectService extends IService<EduSubject> {
 
     /**
      * 批量导入分类
+     *
      * @param file
      * @return
      */
@@ -32,7 +33,6 @@ public interface EduSubjectService extends IService<EduSubject> {
     boolean saveOneLevel(EduSubject subject);
 
     boolean saveTwoLevel(EduSubject subject);
-
 
 
 }

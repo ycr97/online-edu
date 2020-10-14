@@ -18,25 +18,25 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class Swagger2 {
 
     private ApiInfo apiInfo() {
-		return new ApiInfoBuilder()
-				.title("讲师管理API文档")
-				.description("简单优雅的restfun风格")
+        return new ApiInfoBuilder()
+                .title("讲师管理API文档")
+                .description("简单优雅的restfun风格")
 //				.termsOfServiceUrl("http://www.zimug.com")
-				.version("1.0")
-				.build();
+                .version("1.0")
+                .build();
     }
 
-	@Bean
-	public Docket createRestApi() {
-		return new Docket(DocumentationType.SWAGGER_2)
-                        .apiInfo(apiInfo())
-                        .select()
-                        //扫描basePackage包下面的“/rest/”路径下的内容作为接口文档构建的目标
-                        .apis(RequestHandlerSelectors.basePackage("com.yy.eduvideoservice"))
+    @Bean
+    public Docket createRestApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .select()
+                //扫描basePackage包下面的“/rest/”路径下的内容作为接口文档构建的目标
+                .apis(RequestHandlerSelectors.basePackage("com.yy.eduvideoservice"))
 //                        .paths(PathSelectors.regex("/eduservice/teacher/.*"))
-                        .paths(PathSelectors.regex("/vidservice/.*"))
-                        .build();
-	}
-	
-	
+                .paths(PathSelectors.regex("/vidservice/.*"))
+                .build();
+    }
+
+
 }

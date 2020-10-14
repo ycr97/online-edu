@@ -18,8 +18,8 @@ import java.util.List;
 public interface VodClient {
 
     @DeleteMapping("/vidservice/vod/{videoId}")
-    public ResultCommon deleteVideo(@PathVariable("videoId") String videoId);
+    ResultCommon deleteVideo(@PathVariable("videoId") String videoId);
 
     @DeleteMapping("/vidservice/vod/deleteMore")
-    public ResultCommon deleteVideos(@RequestParam("videoList") List<String> videos);
+    ResultCommon deleteVideos(@RequestParam("videoList") List<String> videos);
 }
