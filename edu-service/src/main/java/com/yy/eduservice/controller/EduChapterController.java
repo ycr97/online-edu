@@ -8,6 +8,7 @@ import com.yy.eduservice.service.EduChapterService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +34,7 @@ public class EduChapterController {
     @GetMapping("/getByCourseId/{courseId}")
     public ResultCommon listChapterByCourseId(
             @ApiParam(name = "courseId", value = "课程Id", required = true)
-            @PathVariable String courseId){
+            @PathVariable String courseId) {
 
         List<EduChapterDto> eduChapterDtos = eduChapterService.nestedList(courseId);
         Map<String, List<EduChapterDto>> map = new HashMap<>();
@@ -57,7 +58,7 @@ public class EduChapterController {
     @DeleteMapping("/{id}")
     public ResultCommon deleteById(
             @ApiParam(name = "id", value = "课程Id", required = true)
-            @PathVariable String id){
+            @PathVariable String id) {
         boolean flag = eduChapterService.removeChapterById(id);
         if (flag) {
             return ResultCommon.success();
@@ -90,7 +91,7 @@ public class EduChapterController {
         boolean save = eduChapterService.save(eduChapter);
         if (save) {
             return ResultCommon.success();
-        }else{
+        } else {
             return ResultCommon.fail();
         }
     }

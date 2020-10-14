@@ -27,7 +27,7 @@ public class MsmServiceImpl implements MsmService {
                 "wr15SmIKfC3NAilCKI1LwQaRdOialf");
         DefaultAcsClient client = new DefaultAcsClient(profile);
 
-        CommonRequest request    = new CommonRequest();
+        CommonRequest request = new CommonRequest();
 
         // 设置固定参数
         request.setMethod(MethodType.POST);
@@ -43,7 +43,7 @@ public class MsmServiceImpl implements MsmService {
 
         // 最终发送
         try {
-            CommonResponse response  = client.getCommonResponse(request);
+            CommonResponse response = client.getCommonResponse(request);
             boolean success = response.getHttpResponse().isSuccess();
             return success;
         } catch (ClientException e) {

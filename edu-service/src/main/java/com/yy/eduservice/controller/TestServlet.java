@@ -33,7 +33,7 @@ public class TestServlet extends HttpServlet {
         System.out.println("初始化");
     }
 
-    public TestServlet(){
+    public TestServlet() {
         System.out.println("构造方法");
     }
 

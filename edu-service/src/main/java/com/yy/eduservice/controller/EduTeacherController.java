@@ -38,7 +38,7 @@ public class EduTeacherController {
 
 
     @PostMapping("/login")
-    public ResultCommon login(){
+    public ResultCommon login() {
         Map<String, String> map = new HashMap<>();
         map.put("token", "admin-token");
         return ResultCommon.builder()
@@ -48,7 +48,7 @@ public class EduTeacherController {
     }
 
     @GetMapping("/info")
-    public ResultCommon loginInfo(){
+    public ResultCommon loginInfo() {
         Map<String, String> map = new HashMap<>();
         map.put("roles", "[admin]");
         map.put("introduction", "I am a super administrator");
@@ -62,32 +62,34 @@ public class EduTeacherController {
 
     /**
      * 获取所有的教师
+     *
      * @return list
      */
     @GetMapping("/list")
-    public ResultCommon listAll(){
+    public ResultCommon listAll() {
         List<EduTeacher> list = eduTeacherService.list(null);
         return ResultCommon.success(list);
     }
 
     @DeleteMapping("/{id}")
-    public ResultCommon deleteById(@PathVariable("id") String id){
+    public ResultCommon deleteById(@PathVariable("id") String id) {
         boolean b = eduTeacherService.removeById(id);
-        if (b){
+        if (b) {
             return ResultCommon.success();
-        }else {
+        } else {
             return ResultCommon.error(CustomExceptionType.OTHER_ERROR, "删除失败");
         }
     }
 
     /**
      * 分页查询所有
-     * @param page page
+     *
+     * @param page  page
      * @param limit limit
      * @return ResultCommon
      */
     @GetMapping("/{page}/{limit}")
-    public ResultCommon getPageList(@PathVariable Integer page, @PathVariable Integer limit){
+    public ResultCommon getPageList(@PathVariable Integer page, @PathVariable Integer limit) {
         Page<EduTeacher> eduTeacherPage = new Page<>(page, limit);
 
         eduTeacherService.page(eduTeacherPage, null);
@@ -102,8 +104,9 @@ public class EduTeacherController {
 
     /**
      * 条件查询
-     * @param page 起始页
-     * @param limit 每页显示多少数据
+     *
+     * @param page         起始页
+     * @param limit        每页显示多少数据
      * @param eduTeacherQO 查询条件对象
      * @return resultCommons
      */
@@ -114,7 +117,7 @@ public class EduTeacherController {
             @ApiParam(name = "limit", value = "一页显示多少条数", required = true)
             @PathVariable Integer limit,
             @ApiParam(name = "courseQO", value = "条件")
-            @RequestBody EduTeacherQO eduTeacherQO){
+            @RequestBody EduTeacherQO eduTeacherQO) {
 
         Page<EduTeacher> eduTeacherPage = new Page<>(page, limit);
         eduTeacherService.conditionList(eduTeacherPage, eduTeacherQO);
@@ -131,10 +134,10 @@ public class EduTeacherController {
     @PutMapping("/{id}")
     public ResultCommon updateTeacher(
             @ApiParam(name = "id", value = "讲师Id", required = true)
-            @PathVariable("id") String id ,
+            @PathVariable("id") String id,
 
             @ApiParam(name = "teacher", value = "讲师对象", required = true)
-            @RequestBody(required = false) EduTeacher eduTeacher){
+            @RequestBody(required = false) EduTeacher eduTeacher) {
 
         eduTeacher.setId(id);
         eduTeacherService.updateById(eduTeacher);
@@ -145,7 +148,7 @@ public class EduTeacherController {
     @PostMapping
     public ResultCommon save(
             @ApiParam(name = "teacher", value = "讲师对象", required = true)
-            @RequestBody EduTeacher teacher){
+            @RequestBody EduTeacher teacher) {
 
         eduTeacherService.save(teacher);
 
@@ -157,7 +160,7 @@ public class EduTeacherController {
     public ResultCommon getTeacherById(
             @ApiParam(name = "id", value = "讲师id", required = true)
             @PathVariable String id
-    ){
+    ) {
         EduTeacher e = eduTeacherService.getById(id);
         return ResultCommon.success(e);
     }
